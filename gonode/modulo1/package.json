@@ -1,0 +1,17 @@
+{
+  "name": "modulo1",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Luísa Barros <qlullyq@gmail.com> (https://luisabfs.github.io/)",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "nunjucks": "^3.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "1.18.11"
+  }
+}
