@@ -22,3 +22,12 @@ export const Container = styled.div`
     border-radius: 100%;
     }
 `;
+
+export const ActionsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  flex: 1;
+
+  margin-right: 10px;
+`;

@@ -54,3 +54,35 @@ export const Wrapper = styled.div`
     }
   }
 `;
+
+export const ListContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justifiy-content: center;
+
+  background: #fff;
+
+  label {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    width: 270px;
+    border-bottom: 2px solid #ededed;
+    margin: 5px;
+
+    input {
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    }
+`;
+
+export const ActionsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  flex: 1;
+
+  margin-right: 10px;
+`;
