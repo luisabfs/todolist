@@ -37,6 +37,10 @@ export const Wrapper = styled.div`
       font-size: 15px;
     }
 
+    span {
+
+    }
+
     button {
       width: 40px;
       height: 40px;

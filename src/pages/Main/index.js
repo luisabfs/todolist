@@ -5,6 +5,7 @@
 import React, { Component } from 'react';
 
 import { Form, Input } from '@rocketseat/unform';
+import * as Yup from 'yup';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen, faTimes } from '@fortawesome/free-solid-svg-icons';
@@ -12,16 +13,21 @@ import {
   Container, Wrapper, ListContainer, ActionsContainer,
 } from './styles';
 
-import List from '../../components/List';
 import Todo from '../../components/Todo';
 
 import logo from '../../assets/logo.png';
+
+const schema = Yup.object().shape({
+  title: Yup.string()
+    .required('Please enter a title')
+    .max(20),
+});
 
 export default class Main extends Component {
   state = {
     todos: [
       {
-        title: 'bibi',
+        title: 'Módulo 3 - React',
         checked: false,
       },
     ],
@@ -51,6 +57,33 @@ export default class Main extends Component {
     });
   };
 
+  onUpdate = (todo) => {
+    // const { todos } = this.state;
+    // const updateTodos = todos.map((state) => {
+    //   if (state.title === todo.title) {
+    //     todo.checked = !todo.checked;
+    //     return todo;
+    //   }
+    //   return state;
+    // });
+    // this.setState({
+    //   updateTodos,
+    // });
+  };
+
+  onDelete = (e, todo) => {
+    const { todos } = this.state;
+
+    const index = todos.indexOf(todo);
+
+    if (index !== -1) {
+      todos.splice(index, 1);
+      this.setState({
+        ...todos,
+      });
+    }
+  };
+
   render() {
     const { todos } = this.state;
 
@@ -59,7 +92,7 @@ export default class Main extends Component {
         <Wrapper>
           <img src={logo} alt="todo list" />
 
-          <Form onSubmit={this.handleSubmit}>
+          <Form schema={schema} onSubmit={this.handleSubmit}>
             <Input name="title" placeholder="Add a todo" />
             <Input type="hidden" name="checked" defaultChecked={false} />
             <button type="submit">+</button>
@@ -74,15 +107,12 @@ export default class Main extends Component {
                   onChange={() => this.onChecked(todo)}
                 />
                 <ActionsContainer>
-                  <FontAwesomeIcon icon={faPen} size="sm" />
-                  <FontAwesomeIcon icon={faTimes} />
+                  <FontAwesomeIcon onClick={this.onUpdate(todo)} icon={faPen} size="sm" />
+                  <FontAwesomeIcon onClick={this.onDelete(todo)} icon={faTimes} />
                 </ActionsContainer>
               </label>
             ))}
           </ListContainer>
-
-          {/* <List todos={todos} checked={checked} onChange={this.isChecked} /
-           */}
         </Wrapper>
       </Container>
     );

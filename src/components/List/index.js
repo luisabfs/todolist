@@ -8,23 +8,37 @@ import { Container, ActionsContainer } from './styles';
 
 import Todo from '../Todo';
 
-export default class List extends Component {
-  // state = { checked: false };
+const List = ({ todos, onChecked }) => (
+  <Container>
+    {todos.map((todo, index) => (
+      <label key={index}>
+        <Todo title={todo.title} checked={todo.checked} onChange={onChecked({ todo })} />
+        <ActionsContainer>
+          <FontAwesomeIcon icon={faPen} size="sm" />
+          <FontAwesomeIcon icon={faTimes} />
+        </ActionsContainer>
+      </label>
+    ))}
+  </Container>
+);
 
-  render() {
-    const { todos, checked } = this.props;
-    return (
-      <Container>
-        {todos.map(todo => (
-          <label key={todo.title}>
-            <Todo title={todo.title} checked={todo.checked} onChange={todo.isChecked} />
-            <ActionsContainer>
-              <FontAwesomeIcon icon={faPen} size="sm" />
-              <FontAwesomeIcon icon={faTimes} />
-            </ActionsContainer>
-          </label>
-        ))}
-      </Container>
-    );
-  }
-}
+export default List;
+
+// export default class List extends Component {
+//   render() {
+//     const { todos, checked } = this.props;
+//     return (
+//       <Container>
+//         {todos.map(todo => (
+//           <label key={todo.title}>
+//             <Todo title={todo.title} checked={todo.checked} onChange={todo.isChecked} />
+//             <ActionsContainer>
+//               <FontAwesomeIcon icon={faPen} size="sm" />
+//               <FontAwesomeIcon icon={faTimes} />
+//             </ActionsContainer>
+//           </label>
+//         ))}
+//       </Container>
+//     );
+//   }
+// }
