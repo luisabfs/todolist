@@ -10,7 +10,7 @@ import * as Yup from 'yup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen, faTimes } from '@fortawesome/free-solid-svg-icons';
 import {
-  Container, Wrapper, ListContainer, ActionsContainer,
+  Container, Wrapper, TodoContainer, ListContainer, ActionsContainer,
 } from './styles';
 
 import Todo from '../../components/Todo';
@@ -71,13 +71,15 @@ export default class Main extends Component {
     // });
   };
 
-  onDelete = (e, todo) => {
+  onDelete = (todo) => {
     const { todos } = this.state;
 
     const index = todos.indexOf(todo);
 
     if (index !== -1) {
+      console.log(todos);
       todos.splice(index, 1);
+      console.log(todos);
       this.setState({
         ...todos,
       });
@@ -100,17 +102,23 @@ export default class Main extends Component {
 
           <ListContainer>
             {todos.map((todo, index) => (
-              <label key={index}>
-                <Todo
-                  title={todo.title}
-                  checked={todo.checked}
-                  onChange={() => this.onChecked(todo)}
-                />
+              <TodoContainer key={index}>
+                <label>
+                  <Todo
+                    title={todo.title}
+                    checked={todo.checked}
+                    onChange={() => this.onChecked(todo)}
+                  />
+                </label>
                 <ActionsContainer>
-                  <FontAwesomeIcon onClick={this.onUpdate(todo)} icon={faPen} size="sm" />
-                  <FontAwesomeIcon onClick={this.onDelete(todo)} icon={faTimes} />
+                  <button type="button">
+                    <FontAwesomeIcon onClick={() => this.onUpdate(todo)} icon={faPen} size="sm" />
+                  </button>
+                  <button type="button">
+                    <FontAwesomeIcon onClick={() => this.onDelete(todo)} icon={faTimes} size="lg" />
+                  </button>
                 </ActionsContainer>
-              </label>
+              </TodoContainer>
             ))}
           </ListContainer>
         </Wrapper>

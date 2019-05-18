@@ -59,6 +59,11 @@ export const Wrapper = styled.div`
   }
 `;
 
+export const TodoContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
 export const ListContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -88,5 +93,8 @@ export const ActionsContainer = styled.div`
   align-items: flex-end;
   flex: 1;
 
-  margin-right: 10px;
+  button {
+    border: none;
+    background: #fff;
+  }
 `;
