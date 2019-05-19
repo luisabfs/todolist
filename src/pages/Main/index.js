@@ -1,7 +1,3 @@
-/* eslint-disable react/no-unused-state */
-/* eslint-disable jsx-a11y/label-has-for */
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
 
 import { Form, Input } from '@rocketseat/unform';
@@ -25,12 +21,7 @@ const schema = Yup.object().shape({
 
 export default class Main extends Component {
   state = {
-    todos: [
-      {
-        title: 'Módulo 3 - React',
-        checked: false,
-      },
-    ],
+    todos: [],
   };
 
   handleSubmit = (data, { resetForm }) => {
@@ -45,18 +36,17 @@ export default class Main extends Component {
 
   handleUpdate = (data, todo) => {
     const { todos } = this.state;
-    console.log(todo, data);
 
     const updateTodos = todos.map((state) => {
       if (state.title === todo.title) {
-        todo.title = data.title;   
+        todo.title = data.title;
         todo.updated = !todo.updated;
         return todo;
       }
       return state;
     });
     this.setState({
-      updateTodos, 
+      updateTodos,
     });
   };
 

@@ -27,8 +27,6 @@ export const Wrapper = styled.div`
 
     input {
       flex: 1;
-      width: 220px
-      height: 40px;
       border: solid 2px #333;
       border-radius: 3px;
       margin-right: 10px;
@@ -46,7 +44,7 @@ export const Wrapper = styled.div`
       border-radius: 3px;
       background-color: #636e72;
       font-size: 20px;
-      transition: ease-in-out .2s;
+      transition: ease-in-out 0.2s;
 
       &:hover {
         background: #828b8e;
@@ -79,7 +77,7 @@ export const TodoContainer = styled.div`
 export const ListContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justifiy-content: center;
+  justify-content: center;
 
   background: #fff;
 
@@ -93,10 +91,11 @@ export const ListContainer = styled.div`
     margin: 5px;
 
     input {
-    width: 15px;
-    height: 15px;
-    border-radius: 100%;
+      width: 15px;
+      height: 15px;
+      border-radius: 100%;
     }
+  }
 `;
 
 export const ActionsContainer = styled.div`
