@@ -20,7 +20,7 @@ import logo from '../../assets/logo.png';
 const schema = Yup.object().shape({
   title: Yup.string()
     .required('Please enter a title')
-    .max(20),
+    .max(25),
 });
 
 export default class Main extends Component {
