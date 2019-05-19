@@ -43,6 +43,23 @@ export default class Main extends Component {
     resetForm();
   };
 
+  handleUpdate = (data, todo) => {
+    const { todos } = this.state;
+    console.log(todo, data);
+
+    const updateTodos = todos.map((state) => {
+      if (state.title === todo.title) {
+        todo.title = data.title;   
+        todo.updated = !todo.updated;
+        return todo;
+      }
+      return state;
+    });
+    this.setState({
+      updateTodos, 
+    });
+  };
+
   onChecked = (todo) => {
     const { todos } = this.state;
     const updateTodos = todos.map((state) => {
@@ -58,17 +75,18 @@ export default class Main extends Component {
   };
 
   onUpdate = (todo) => {
-    // const { todos } = this.state;
-    // const updateTodos = todos.map((state) => {
-    //   if (state.title === todo.title) {
-    //     todo.checked = !todo.checked;
-    //     return todo;
-    //   }
-    //   return state;
-    // });
-    // this.setState({
-    //   updateTodos,
-    // });
+    const { todos } = this.state;
+
+    const updateTodos = todos.map((state) => {
+      if (state.title === todo.title) {
+        todo.updated = !todo.updated;
+        return todo;
+      }
+      return state;
+    });
+    this.setState({
+      updateTodos,
+    });
   };
 
   onDelete = (todo) => {
@@ -77,9 +95,7 @@ export default class Main extends Component {
     const index = todos.indexOf(todo);
 
     if (index !== -1) {
-      console.log(todos);
       todos.splice(index, 1);
-      console.log(todos);
       this.setState({
         ...todos,
       });
@@ -96,20 +112,32 @@ export default class Main extends Component {
 
           <Form schema={schema} onSubmit={this.handleSubmit}>
             <Input name="title" placeholder="Add a todo" />
-            <Input type="hidden" name="checked" defaultChecked={false} />
+            <Input name="checked" type="hidden" defaultChecked={false} />
+            <Input name="updated" type="hidden" defaultChecked={false} />
             <button type="submit">+</button>
           </Form>
 
           <ListContainer>
             {todos.map((todo, index) => (
               <TodoContainer key={index}>
-                <label>
-                  <Todo
-                    title={todo.title}
-                    checked={todo.checked}
-                    onChange={() => this.onChecked(todo)}
-                  />
-                </label>
+                {!todo.updated ? (
+                  <label>
+                    <Todo
+                      title={todo.title}
+                      checked={todo.checked}
+                      onChange={() => this.onChecked(todo)}
+                    />
+                  </label>
+                ) : (
+                  <Form
+                    schema={schema}
+                    initialData={{ title: todo.title }}
+                    onSubmit={e => this.handleUpdate(e, todo)}
+                  >
+                    <Input name="title" />
+                  </Form>
+                )}
+
                 <ActionsContainer>
                   <button type="button">
                     <FontAwesomeIcon onClick={() => this.onUpdate(todo)} icon={faPen} size="sm" />

@@ -37,10 +37,6 @@ export const Wrapper = styled.div`
       font-size: 15px;
     }
 
-    span {
-
-    }
-
     button {
       width: 40px;
       height: 40px;
@@ -62,6 +58,22 @@ export const Wrapper = styled.div`
 export const TodoContainer = styled.div`
   display: flex;
   flex-direction: row;
+
+  form {
+    display: flex;
+    margin: 0;
+
+    input {
+      flex: 1;
+      width: 152px;
+      height: 23px;
+      border: 0;
+      border: solid 1px #333;
+    }
+
+    button {
+    }
+  }
 `;
 
 export const ListContainer = styled.div`
