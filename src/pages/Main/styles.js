@@ -27,10 +27,11 @@ export const Wrapper = styled.div`
 
     input {
       flex: 1;
+      width: 242px;
       border: solid 2px #333;
       border-radius: 3px;
       margin-right: 10px;
-      padding: 7px;
+      padding: 5px;
       color: #2d3436;
       font-size: 15px;
     }
@@ -55,7 +56,13 @@ export const Wrapper = styled.div`
 
 export const TodoContainer = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: row;
+
+  width: 290px;
+  height: 40px;
+  margin: 5px 0;
 
   form {
     display: flex;
@@ -63,8 +70,8 @@ export const TodoContainer = styled.div`
 
     input {
       flex: 1;
-      width: 152px;
-      height: 23px;
+      width: 242px;
+      height: 30px;
       border: 0;
       border: solid 1px #333;
     }
@@ -77,6 +84,7 @@ export const TodoContainer = styled.div`
 export const ListContainer = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
 
   background: #fff;
@@ -87,14 +95,9 @@ export const ListContainer = styled.div`
     align-items: center;
 
     width: 270px;
+    height: 30px;
     border-bottom: 2px solid #ededed;
-    margin: 5px;
-
-    input {
-      width: 15px;
-      height: 15px;
-      border-radius: 100%;
-    }
+    margin: 5px 5px 5px 0;
   }
 `;
 
@@ -107,5 +110,6 @@ export const ActionsContainer = styled.div`
   button {
     border: none;
     background: #fff;
+    margin-right: 2px;
   }
 `;
