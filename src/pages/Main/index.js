@@ -6,30 +6,45 @@ import * as Yup from 'yup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen, faTimes } from '@fortawesome/free-solid-svg-icons';
 import {
-  Container, Wrapper, TodoContainer, ListContainer, ActionsContainer,
+  Container, Wrapper, TodoContainer, ListContainer, ActionsContainer, ErrorContainer,
 } from './styles';
 
 import Todo from '../../components/Todo';
 
 import logo from '../../assets/logo.png';
 
-const schema = Yup.object().shape({
-  title: Yup.string()
-    .required('Please enter a title')
-    .max(25),
-});
 
 export default class Main extends Component {
   state = {
     todos: [],
+    error: '⠀',
   };
 
-  handleSubmit = (data, { resetForm }) => {
+  handleSubmit = async (data, { resetForm }) => {
     const { todos } = this.state;
 
-    this.setState({
-      todos: [data, ...todos],
-    });
+    try {
+      const schema = Yup.object().shape({
+        title: Yup.string()
+          .required('Please enter a title')
+          .max(25),
+      });
+
+      await schema.validate(data, {
+        abortEarly: false,
+      });
+
+      this.setState({
+        todos: [data, ...todos],
+        error: '⠀',
+      });
+    } catch (error) {
+      if (error instanceof Yup.ValidationError) {
+        this.setState({
+          error: error.message,
+        });
+      }
+    }
 
     resetForm();
   };
@@ -93,23 +108,27 @@ export default class Main extends Component {
   };
 
   render() {
-    const { todos } = this.state;
+    const { todos, error } = this.state;
 
     return (
       <Container>
         <Wrapper>
           <img src={logo} alt="todo list" />
 
-          <Form schema={schema} onSubmit={this.handleSubmit}>
-            <Input name="title" placeholder="Add a todo" />
+          <Form onSubmit={this.handleSubmit}>
+            <Input error={error} name="title" placeholder="Add a todo" />
             <Input name="checked" type="hidden" defaultChecked={false} />
             <Input name="updated" type="hidden" defaultChecked={false} />
             <button type="submit">+</button>
           </Form>
 
+          <ErrorContainer>
+            <label>{error}</label>
+          </ErrorContainer>
+
           <ListContainer>
-            {todos.map((todo, index) => (
-              <TodoContainer key={index}>
+            {todos.map(todo => (
+              <TodoContainer key={Math.random()}>
                 {!todo.updated ? (
                   <label>
                     <Todo
@@ -120,7 +139,6 @@ export default class Main extends Component {
                   </label>
                 ) : (
                   <Form
-                    schema={schema}
                     initialData={{ title: todo.title }}
                     onSubmit={e => this.handleUpdate(e, todo)}
                   >

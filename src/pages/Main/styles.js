@@ -23,7 +23,7 @@ export const Wrapper = styled.div`
 
   form {
     display: flex;
-    margin: 30px;
+    margin: 30px 30px 5px 30px;
 
     input {
       flex: 1;
@@ -73,7 +73,7 @@ export const TodoContainer = styled.div`
       width: 242px;
       height: 30px;
       border: 0;
-      border: solid 1px #333;
+      border: ${({ error }) => (error ? 'solid 1px #d32f2f' : 'solid 1px #333')};
     }
 
     button {
@@ -111,5 +111,14 @@ export const ActionsContainer = styled.div`
     border: none;
     background: #fff;
     margin-right: 2px;
+  }
+`;
+
+export const ErrorContainer = styled.div`
+  display: flex;
+  width: 100%;
+
+  label {
+    color: #d32f2f;
   }
 `;
