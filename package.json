@@ -1,5 +1,5 @@
 {
-  "homepage": "https://luisabfs.github.io/#",
+  "homepage": "https://luisabfs.github.io/#/projects/todolist",
   "main": "src/index.js",
   "name": "todolist",
   "version": "0.1.0",
@@ -20,7 +20,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "yarn run build",
+    "deploy": "gh-pages -d build"
   },
   "browserslist": {
     "production": [
@@ -39,6 +41,7 @@
     "eslint-plugin-flowtype": "^3.9.0",
     "eslint-plugin-import": "^2.17.2",
     "eslint-plugin-jsx-a11y": "^6.2.1",
-    "eslint-plugin-react": "^7.13.0"
+    "eslint-plugin-react": "^7.13.0",
+    "gh-pages": "^3.1.0"
   }
 }
