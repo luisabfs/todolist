@@ -1,4 +1,6 @@
 {
+  "homepage": "https://luisabfs.github.io/#",
+  "main": "src/index.js",
   "name": "todolist",
   "version": "0.1.0",
   "private": true,
