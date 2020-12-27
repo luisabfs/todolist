@@ -1,5 +1,5 @@
 {
-  "homepage": "https://luisa.dev",
+  "homepage": ".",
   "main": "src/index.js",
   "name": "todolist",
   "version": "0.1.0",
